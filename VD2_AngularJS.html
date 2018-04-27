@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ví dụ về AngularJS HTML DOM</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <!-- Trước đây, khi sử dụng thẻ <script> để tham chiếu tới tập tin bên ngoài thì hầu hết các trường hợp
+    bạn được khuyên nên đặt thẻ <script> ở trước thẻ đóng </body>. Điều này như bạn đề cập trong câu hỏi sẽ
+    giúp cho trình duyệt có thể tải về mã HTML một cách liên tục mà không bị dừng lại giữa chừng để chờ
+    tải về các tập tin JavaScript được tham chiếu vào trang.
+
+    Tuy nhiên, mới đây hai thuộc tính async và defer được giới thiệu để sử dụng cho thẻ <script>.
+    Sử dụng hai thuộc tính này sẽ giúp mã lệnh JavaScript có thể được tải bất đồng bộ cùng với mã HTML.
+    Điều này giúp cho trình duyệt có thể đồng thời tải cả mã HTML và JavaScript cùng một lúc.
+    Khi đó bạn nếu bạn sử dụng thẻ <script> ở bên trong thẻ <head> như sau:
+
+    </html>
+        <head>
+            <script src="/js/main.js" type="text/javascript" async></script>
+        </head>
+    <body>
+    ...
+    </body>
+    </html>
+    Thì tốc độ tải trang sẽ nhanh hơn khi để thẻ <script> ở cuối trang (trước thẻ <body>) vì lúc này chúng ta
+    tận dụng được lợi thế trình duyệt tải về đồng thời HTML và JavaScript cùng một lúc.
+    nguồn tham khảo tại đây: https://www.codehub.vn/Nen-dat-the-script-o-dau-trong-HTML
+    -->
+</head>
+<body>
+<h1>Ví dụ HTML DOM</h1>
+<div ng-app="Demo" ng-init="sw=true" ng-controller="Ctrlr">
+    <p>
+        <button ng-disabled="sw">Bấm vào đây!</button>
+    </p>
+    <p>
+        <input type="checkbox" ng-model="sw" ng-click="chg(sw)"/>{{textchg}}
+    </p>
+    <p>
+        {{ sw }} <!-- giá trị trả về của sw nếu true thì vô hiệu hoá nút button và ngược lại-->
+    </p>
+    <!-- Application explained:
+    The ng-disabled directive binds the application data mySwitch to the HTML button's disabled attribute.
+    The ng-model directive binds the value of the HTML checkbox element to the value of mySwitch.
+    If the value of mySwitch evaluates to true, the button will be disabled:
+            <p>
+            <button disabled>Click Me!</button>
+            </p>
+
+            If the value of mySwitch evaluates to false, the button will not be disabled:
+            <p>
+            <button>Click Me!</button>
+            </p>
+    Tham khảo tại: https://www.w3schools.com/angular/angular_htmldom.asp
+    -->
+    <script>
+        var app = angular.module('Demo', []);
+        app.controller('Ctrlr', function($scope) {
+            $scope.textchg = "Click để hiện lên";
+            $scope.chg = function(sw) {
+                if(sw)
+                    $scope.textchg = "Click để hiện lại";
+                else
+                    $scope.textchg = "Click để vô hiệu hoá";
+            }
+        });
+    </script>
+</div>
+</body>
+</html>
