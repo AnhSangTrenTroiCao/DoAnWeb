@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    </head>
+    <body ng-app="myApp">
+
+    <w3-phong-directive></w3-phong-directive>
+
+
+    <script>
+        var a= angular.module("myApp",[]);
+        a.directive("w3PhongDirective",function() {
+            return {template:"Hello World!"};
+        });
+    </script>
+    </body>
+    </html>
